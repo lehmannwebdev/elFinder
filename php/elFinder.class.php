@@ -290,6 +290,7 @@ class elFinder {
 	 **/
 	public function __construct($opts) {
 		// try session start | restart
+		if (session_status() == PHP_SESSION_NONE)
 		@session_start();
 		
 		$sessionUseCmds = array();
@@ -699,7 +700,9 @@ class elFinder {
 	 */
 	protected function saveNetVolumes($volumes) {
 		// try session restart
+		if (session_status() == PHP_SESSION_NONE)
 		@session_start();
+		
 		$_SESSION[$this->netVolumesSessionKey] = elFinder::sessionDataEncode($volumes);
 		elFinder::sessionWrite();
 	}
@@ -766,6 +769,7 @@ class elFinder {
 	
 	protected function netmount($args) {
 		// try session restart
+		if (session_status() == PHP_SESSION_NONE)
 		@session_start();
 		
 		$options  = array();
