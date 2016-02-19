@@ -659,7 +659,7 @@ abstract class elFinderVolumeDriver {
 	}
 	
 	protected function sessionRestart() {
-		$start = @session_start();
+		$start = (session_status() == PHP_SESSION_NONE) ? @session_start() : TRUE;
 		if (!isset($_SESSION[elFinder::$sessionCacheKey])) {
 			$_SESSION[elFinder::$sessionCacheKey] = array();
 		}
